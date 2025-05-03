@@ -40,50 +40,7 @@ To apply GA methods to solve the N-Queens problem.
 To evaluate the effectiveness of GA in finding solutions to combinatorial problems.
 
 To explore how genetic operations (selection, crossover, and mutation) influence the search for optimal solutions.
-code:
+## Code
 
-import random
-def create_board(size):
-    return [random.randint(0, size - 1) for _ in range(size)]
-def score_board(board):
-    score = 0
-    size = len(board)
-    for i in range(size):
-        for j in range(i + 1, size):
-            if board[i] != board[j] and abs(board[i] - board[j]) != abs(i - j):
-                score += 1
-    return score
-def pick_parents(boards, scores):
-    best_score = max(scores)
-    chances = [s / best_score for s in scores]
-    return random.choices(boards, weights=chances, k=2)
-def mix_boards(a, b):
-    cut = random.randint(0, len(a) - 1)
-    return a[:cut] + b[cut:], b[:cut] + a[cut:]
-def tweak_board(board, chance=0.1):
-    if random.random() < chance:
-        spot = random.randint(0, len(board) - 1)
-        board[spot] = random.randint(0, len(board) - 1)
-    return board
-def solve_queens(size, group_size=100, tries=1000):
-    boards = [create_board(size) for _ in range(group_size)]
-    best_possible = (size * (size - 1)) // 2
-    for step in range(tries):
-        scores = [score_board(b) for b in boards]
-        if best_possible in scores:
-            winner = boards[scores.index(best_possible)]
-            print(f"Found solution at step {step}: {winner}")
-            return winner
-        next_gen = []
-        while len(next_gen) < group_size:
-            parent1, parent2 = pick_parents(boards, scores)
-            child1, child2 = mix_boards(parent1, parent2)
-            next_gen.append(tweak_board(child1))
-            if len(next_gen) < group_size:
-                next_gen.append(tweak_board(child2))
-        boards = next_gen
-    print("No perfect solution found.")
-    return None
-if __name__ == "__main__":
-    final = solve_queens(8)
-    print("Final result:", final)
+<pre> ```python import random def create_board(size): return [random.randint(0, size - 1) for _ in range(size)] def score_board(board): score = 0 size = len(board) for i in range(size): for j in range(i + 1, size): if board[i] != board[j] and abs(board[i] - board[j]) != abs(i - j): score += 1 return score def pick_parents(boards, scores): best_score = max(scores) chances = [s / best_score for s in scores] return random.choices(boards, weights=chances, k=2) def mix_boards(a, b): cut = random.randint(0, len(a) - 1) return a[:cut] + b[cut:], b[:cut] + a[cut:] def tweak_board(board, chance=0.1): if random.random() < chance: spot = random.randint(0, len(board) - 1) board[spot] = random.randint(0, len(board) - 1) return board def solve_queens(size, group_size=100, tries=1000): boards = [create_board(size) for _ in range(group_size)] best_possible = (size * (size - 1)) // 2 for step in range(tries): scores = [score_board(b) for b in boards] if best_possible in scores: winner = boards[scores.index(best_possible)] print(f"Found solution at step {step}: {winner}") return winner next_gen = [] while len(next_gen) < group_size: parent1, parent2 = pick_parents(boards, scores) child1, child2 = mix_boards(parent1, parent2) next_gen.append(tweak_board(child1)) if len(next_gen) < group_size: next_gen.append(tweak_board(child2)) boards = next_gen print("No perfect solution found.") return None if __name__ == "__main__": final = solve_queens(8) print("Final result:", final) ``` </pre>
+
