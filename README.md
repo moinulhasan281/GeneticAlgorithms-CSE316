@@ -1,6 +1,38 @@
 # GeneticAlgorithms-CSE316
-What the Lab is About
-This lab explores the use of Genetic Algorithms (GA) to solve the classic N-Queens problem. The goal of the problem is to place N queens on an N×N chessboard in such a way that no two queens threaten each other. The lab focuses on applying GA techniques, including selection, crossover, and mutation, to find an optimal arrangement of queens.
+Implementation Overview
+In this lab, I implemented a Genetic Algorithm (GA) to solve the N-Queens problem using a function-based (procedural) programming style in Python.
+
+Although there are multiple approaches to designing genetic algorithms, such as object-oriented programming (OOP) with classes, my implementation correctly follows the essential genetic algorithm workflow:
+
+Population Initialization: Randomly generating an initial population of possible board configurations.
+
+Fitness Evaluation: Scoring each board based on the number of non-attacking queen pairs.
+
+Selection: Selecting parent boards for reproduction based on their fitness scores.
+
+Crossover: Combining parts of two parents to produce offspring.
+
+Mutation: Randomly altering some parts of the offspring to maintain genetic diversity.
+
+Iteration over Generations: Repeating the process for a fixed number of generations or until an optimal solution is found.
+
+📌 Limitations
+While the implementation is functional and achieves the problem-solving goal, it has some limitations:
+
+No Chessboard Display: The program outputs the queen positions as a list, without a visual board representation.
+
+Fixed Mutation Probability: The mutation chance is hardcoded and not easily adjustable without modifying the code.
+
+Lacks Class-based Structure: The program is function-based and does not use a class-based, modular design, which limits code reusability, readability, and future scalability.
+
+📌 Future Improvements
+For future enhancements, the following improvements are recommended:
+
+Implement a class-based (OOP) version for better structure and maintainability.
+
+Add a visual chessboard display for better understanding of the results.
+
+Make mutation rates and other parameters configurable without changing the source code.
 
 How to Run Your Code (Using VS Code)
 To run the Genetic Algorithm code for solving the N-Queens problem using Visual Studio Code (VS Code):
